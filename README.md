@@ -91,4 +91,78 @@ mkdir -p dossier-cool
 # la valeur de i restera la dernière valeur après une boucle par exemple
 
 ```
+## Flux
+pipe |
 
+commande_1 | commande_2(récupère le flux de commande_1)
+cat script.sh | grep 3 # on cherche 3 dans le fichier script.sh
+on peut faire aussi
+grep 3 script.sh
+
+ls => programme qui affiche dans la sortie standard les fichiers d'ou je suis actuellement
+
+ls | grep fonction
+
+caractère chevron >
+sortie de la commande à droite et l'on l'écrit dans un fichier
+echo blabla > fichier.txt
+attention on écrase le contenu à chaque fois
+pour ajouter à la fin du fichier
+echo blabla >> fichier.txt
+
+< prend un fichier et l'ajoute dans input d'un programme.
+grep quoi  < fichier2
+cherche dans fichier2 "quoi"
+
+ Maintenant on fait de la magie noir.
+
+ grep quoi << EOF (arrete de lire lorsque EFO)
+ << prend les inputs du terminal jusqu'a EOF et donne ça comme input a grep pour cherche quoi.
+
+ || équivalent à OU
+ mkdir dossier ||
+
+ Pour savoir si la dernière commande a été reussi
+ echo $?
+ 1- false
+ 0- true
+ mkdir dossier || echo "ca marche pas"
+ si la commande mkdir dossier fail alors on a echo "ca marche pas"
+ si la commande mkdir dossier réussi alors on a pas echo "ca marche pas"
+ utils si on ne veut pas que la commande nous retourne une erreur
+
+ ## Filtrage de fichier
+Comment filtrer du texte
+cut permet de découpé une chaine de caractère
+tr => trim enlever un petit bout de la chaine de caractère
+tr -d \"
+\ antislach => après on prend le caractère tel quel
+-d = delimiter
+grep VERSION_ID /etc/os-release
+version=$(grep VERSION_ID /etc/os-release)
+version=$(echo $version |cut -d "=" -f2 | tr -d \")
+
+grep -R (recursif chercher dans les dossier)
+
+grep -R VERSION_ID /etc
+
+* expression régulière pour tout
+
+for i in $(sequ 10) ; do touch fichier$i ; done
+rm fichier*
+enleve les fichiers de 1 à 3
+rm fichier[1-3]
+
+## Arguments
+$1 argument 1 passé au script
+
+```bash
+echo $1
+echo $2
+```
+script.sh argument1 argument2
+$@ tous les arguments
+$0 nom du script
+$# retourne le nombre d'argument passé à la commande
+
+## Incantation machi noir
