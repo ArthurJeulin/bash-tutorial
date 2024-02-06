@@ -159,10 +159,31 @@ $1 argument 1 passé au script
 ```bash
 echo $1
 echo $2
-```
+
 script.sh argument1 argument2
 $@ tous les arguments
 $0 nom du script
 $# retourne le nombre d'argument passé à la commande
+```
+## Incantation machigie noir
 
-## Incantation machi noir
+## Comment faire des calculs
+Comment faire des calcules
+```bash
+# Affiche "2+2"
+echo "2+2"
+# Crée une variable a qui est la resultat du calcul
+let "a = 2 + 2"
+
+let "a = (2 - 2)/23"
+let "a = $a/23"
+
+```
+
+## Bonnes pratiques
+Noms de variables
+Shebang (#!)
+après le shebang => error mode -e arrête le script s'il y a une erreur
+                 => debug -x
+eviter les script interactifs 
+google guide https://google.github.io/styleguide/shellguide.html
